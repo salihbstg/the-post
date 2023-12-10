@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <h1>The Post</h1>
+    <form action="/submit" method="post">
+        <input name="title" placeholder="Title" type="text" required>
+        <input name="auth" placeholder="Author" type="text" required>
+        <label for="description">Post</label>
+        <textarea required name="description" id="" cols="30" rows="10"></textarea>
+        <div class="new-div">
+            <button type="submit">NEW POST</button>
+        </div>
+    </form>
+
+    <div class="posts">
+        <% locals.result.forEach(element=> {%>
+
+            <div class="post">
+                <div>
+                    <a href="/delete/<%= element.id %>" class="delete-button">
+                        Delete
+                    </a>
+                </div>
+                <h2> <%-element.title %></h2>
+                <div>
+                    <h3>News</h3>
+                    <p><%- element.description %></p>
+                </div>
+                <div class="spans">
+                    <div>
+                        <span>Oluşturan:</span>
+                        <span><%- element.auth %></span>
+                    </div>
+                    <div>
+                        <span style="display: none;"><%-element.id%></span>
+                    </div>
+                    <span><%- element.date %></span>
+                </div>
+            </div>
+            <% }); %>
+    </div>
+</body>
+
+</html>
